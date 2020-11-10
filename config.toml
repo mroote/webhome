@@ -1,0 +1,8 @@
+#baseURL = "http://example.org/"
+relativeURLs = true
+languageCode = "en-us"
+title = "Mitch Roote"
+theme = "simple"
+
+[params]
+  copyrighthtml = "Copyright © {year} Mitch Roote."

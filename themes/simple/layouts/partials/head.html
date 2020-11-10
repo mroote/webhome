@@ -1,0 +1,13 @@
+<head>
+{{ $particles := resources.Get "js/particles.min.js" | minify | fingerprint }}
+<script src="{{ $particles.RelPermalink }}" integrity="{{ $particles.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+{{ $css := resources.Get "css/base.css" | minify | fingerprint }}
+<link type="text/css" rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+<script type="text/javascript">
+    window.onload = function() {
+        Particles.init({
+          selector: '.background'
+        });
+      };
+</script>
+</head>
