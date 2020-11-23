@@ -1,4 +1,4 @@
 <head>
-{{ $css := resources.Get "css/base.css" | minify | fingerprint }}
+{{ $css := resources.Get "static/css/base.css" | minify | fingerprint }}
 <link type="text/css" rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
 </head>

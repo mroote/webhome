@@ -1,4 +1,4 @@
-{{ $particles := resources.Get "js/particles.min.js" | minify | fingerprint }}
+{{ $particles := resources.Get "static/js/particles.min.js" | minify | fingerprint }}
 <script src="{{ $particles.RelPermalink }}" integrity="{{ $particles.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 <script type="text/javascript">
     window.onload = function() {
