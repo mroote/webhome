@@ -1,5 +1,4 @@
 <head>
 {{ $css := resources.Get "css/base.css" | minify | fingerprint }}
 <link type="text/css" rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
-<meta http-equiv="refresh" content="0; url=/about/index.html">
 </head>
