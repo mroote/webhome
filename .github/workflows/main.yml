@@ -38,6 +38,6 @@ jobs:
         uses: earendildev/backblaze-b2-action@v0.2.0
         env:
           SOURCE_DIR: './public'
-          B2_BUCKET: ${{ secrets.B2_BUCKET }}
+          B2_BUCKET_PATH: 'b2://${{ secrets.B2_BUCKET }}/'
           B2_APPKEY_ID: ${{ secrets.B2_APPKEY_ID }}
           B2_APPKEY: ${{ secrets.B2_APPKEY }}
