@@ -1,8 +1,15 @@
-<div class="topnav">
-    {{ $mr_logo := resources.Get "static/img/MR.png" | minify | fingerprint }}
-    <img src="{{ $mr_logo.RelPermalink }}">
-    <h3>Mitch Roote</h3>
-    <h4>{{ .Title }}</h4>
-    <a href="/about">About</a>
-    <a href="/">Home</a>
-</div> 
+<header class="header">
+    <div class="topnav">
+        <div class="topnav-main">
+            {{ $mr_logo := resources.Get "static/img/MR.png" | minify | fingerprint }}
+            <img src="{{ $mr_logo.RelPermalink }}">
+            <h3>Mitch Roote</h3>
+            <h4>{{ .Title }}</h4>
+        </div>
+
+        <div class="topnav-menu">
+            <a href="/about">About</a>
+            <a href="/">Home</a>
+        </div>
+    </div> 
+</header>
