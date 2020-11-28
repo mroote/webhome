@@ -4,5 +4,34 @@ languageCode = "en-us"
 title = "Mitch Roote"
 theme = "simple"
 
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "ET"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -110
+
+  [[menu.main]]
+    name = "about stuff"
+    post = "<span class='alert'>New!</span>"
+    pre = "<i class='fa fa-road'></i>"
+    url = "/about/"
+    weight = -100
+
+  [[menu.about]]
+    identifier = "home"
+    name = "ET phone home"
+    pre = "<i class='fa fa-heart'></i>"
+    url = "/"
+    weight = -110
+
+  [[menu.about]]
+    name = "about"
+    post = "<span class='alert'>New!</span>"
+    pre = "<i class='fa fa-road'></i>"
+    url = "/about/"
+    weight = -100
+
 [params]
-  copyrighthtml = "Copyright © {year} Mitch Roote."
+  copyrighthtml = "Copyright © {{ .Now.Year }} Mitch Roote."
