@@ -5,6 +5,9 @@ html, body {
 
 .container {
     display: flex;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 5px;
 }
 
 .background {

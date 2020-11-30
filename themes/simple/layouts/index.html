@@ -1,4 +1,7 @@
 {{- define "main" -}}
+<main>
+    <h1>Hello World {{ .Title }}</h1>
+    <p>Testing</p>
     <aside>
         <ul>
             {{ $currentPage := . }}
@@ -34,7 +37,5 @@
             </li>
         </ul>
     </aside>
-<h1>Hello World {{ .Title }}</h1>
-<p>Testing</p>
-{{ printf "%#v" $.Site }}
+</main>
 {{ end }}
