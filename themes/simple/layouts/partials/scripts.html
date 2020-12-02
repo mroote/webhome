@@ -1,5 +1,8 @@
-{{ $particles := resources.Get "static/js/particles.min.js" | minify | fingerprint }}
+{{ $particles := resources.Get "static/js/particles.js" | minify | fingerprint }}
 <script src="{{ $particles.RelPermalink }}" integrity="{{ $particles.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
+
+{{ $ztext := resources.Get "static/js/ztext.js" | minify | fingerprint }}
+<script src="{{ $ztext.RelPermalink }}" integrity="{{ $ztext.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 <script type="text/javascript">
     window.onload = function() {
         Particles.init({

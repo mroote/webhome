@@ -1,53 +1,55 @@
 {{- define "main" -}}
-<main>
+<main class="content">
     <!-- sidebar start -->
-    <aside>
-        <ul>
-            {{ $currentPage := . }}
-            {{ range .Site.Menus.about }}
-                {{ if .HasChildren }}
-                    <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
-                        <a href="#">
-                            {{ .Pre }}
-                            <span>{{ .Name }}</span>
-                        </a>
-                    </li>
-                    <ul class="sub-menu">
-                        {{ range .Children }}
-                            <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
-                                <a href="{{ .URL }}">{{ .Name }}</a>
-                            </li>
-                        {{ end }}
-                    </ul>
-                {{ else }}
-                    <li>
-                        <a href="{{ .URL }}">
-                            {{ .Pre }}
-                            <span>{{ .Name }}</span>
-                        </a>
-                    </li>
-                {{ end }}
-            {{ end }}
-            <li>
-                <a href="#" target="_blank">Hardcoded Link 1</a>
-            </li>
-            <li>
-                <a href="#" target="_blank">Hardcoded Link 2</a>
-            </li>
-        </ul>
-    </aside>
     <article>
-        <header>
-            <h1> {{.Title}} </h1>
-        </header>
+        <aside>
+            <ul>
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.about }}
+                    {{ if .HasChildren }}
+                        <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                            <a href="#">
+                                {{ .Pre }}
+                                <span>{{ .Name }}</span>
+                            </a>
+                        </li>
+                        <ul class="sub-menu">
+                            {{ range .Children }}
+                                <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                    <a href="{{ .URL }}">{{ .Name }}</a>
+                                </li>
+                            {{ end }}
+                        </ul>
+                    {{ else }}
+                        <li>
+                            <a href="{{ .URL }}">
+                                {{ .Pre }}
+                                <span>{{ .Name }}</span>
+                            </a>
+                        </li>
+                    {{ end }}
+                {{ end }}
+                <li>
+                    <a href="#" target="_blank">Hardcoded Link 1</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">Hardcoded Link 2</a>
+                </li>
+            </ul>
+        </aside>
+        <article>
+            <header>
+                <h1> {{.Title}} </h1>
+            </header>
+        </article>
+        {{.Content}}
+        <ul>
+        {{ range .Pages }}
+            <li>
+                <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{ .Title }}</a>
+            </li>
+        {{ end }}
+        </ul>
     </article>
-    {{.Content}}
-    <ul>
-    {{ range .Pages }}
-        <li>
-            <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{ .Title }}</a>
-        </li>
-    {{ end }}
-    </ul>
 </main>
 {{ end }}
