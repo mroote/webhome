@@ -3,31 +3,28 @@ relativeURLs = true
 languageCode = "en-us"
 title = "Mitch Roote"
 theme = "simple"
+sectionPagesMenu = "main"
 
 [menu]
   [[menu.main]]
-    identifier = "home"
-    name = "ET"
-    pre = "<i class='fa fa-heart'></i>"
+    name = "Home"
     url = "/"
     weight = -110
 
   [[menu.main]]
-    name = "about stuff"
-    post = "<span class='alert'>New!</span>"
-    pre = "<i class='fa fa-road'></i>"
+    identifier = "about"
+    name = "About"
     url = "/about/"
     weight = -100
 
   [[menu.about]]
-    identifier = "home"
     name = "ET phone home"
     pre = "<i class='fa fa-heart'></i>"
-    url = "/"
+    url = "/about/"
     weight = -110
 
   [[menu.about]]
-    name = "about"
+    name = "about1"
     post = "<span class='alert'>New!</span>"
     pre = "<i class='fa fa-road'></i>"
     url = "/about/"
