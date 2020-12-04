@@ -1,21 +1,21 @@
 {{- define "main" -}}
 <main class="content">
+    <aside>
+        <ul>
+            {{ $currentPage := . }}
+            {{ range .Site.Menus.main }}
+                <li>
+                    <a href="{{ .URL }}">
+                        {{ .Pre }}
+                        <span>{{ .Name }}</span>
+                    </a>
+                </li>
+            {{ end }}
+        </ul>
+    </aside>
     <article>
-        <h1 class="z-text" data-z data-z-layers="4" data-z-depth="1.4em"> {{ .Title }}</h1>
-        <p>Testing</p>
-        <aside>
-            <ul>
-                {{ $currentPage := . }}
-                {{ range .Site.Menus.main }}
-                    <li>
-                        <a href="{{ .URL }}">
-                            {{ .Pre }}
-                            <span>{{ .Name }}</span>
-                        </a>
-                    </li>
-                {{ end }}
-            </ul>
-        </aside>
+        <h1 data-text="{{ .Title }}" > {{ .Title }}</h1>
+        <p>{{ .Content }}</p>
     </article>
 </main>
 {{ end }}

@@ -1,8 +1,8 @@
 <footer>
-{{ if .Site.Params.copyrighthtml }}
-    <div class="text-center">{{.Date | safeHTML}}</div>
-{{ end }}
 {{ $tuxLogo := resources.Get "static/img/tux.png" | minify | fingerprint }}
-<img class="tux" src="{{ $tuxLogo.RelPermalink }}">
+<img class="img-invert" src="{{ $tuxLogo.RelPermalink }}">
+{{ if .Site.Params.copyrighthtml }}
+    <div class="text-center">{{.Site.Params.copyrighthtml | safeHTML}}</div>
+{{ end }}
 <canvas class="background"></canvas>
 </footer>

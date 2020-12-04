@@ -9,12 +9,30 @@ html, body {
     justify-content: center;
     align-items: center;
     max-width: 800px;
-    margin: 20px auto;
-    padding: 5px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.content article {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.content h1 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.content h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
-.tux {
+.img-invert {
     filter: invert(1);
 }
 }
@@ -128,8 +146,8 @@ html, body {
    /* Tip: Apply CSS transforms here */
    /* rotateX() == up/down */
    /* rotateY() == left/right */
-   font: bold 3em "Georgia", serif;
-   transform: rotateX(-4deg) rotateY(30deg);
+   font: 3em "Montserrat", sans-serif;
+   transform: rotateX(-1deg) rotateY(10deg);
    color: #00ffff;
 }
 
@@ -143,5 +161,11 @@ html, body {
 }
 
 footer {
+    height: 30px;
     display: flex;
+    justify-content: center;
+}
+
+aside {
+    padding: 24px;
 }

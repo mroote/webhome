@@ -1,7 +1,7 @@
 <head>
 {{ $water_css := resources.Get "static/css/water.css" | minify | fingerprint }}
 <link type="text/css" rel="stylesheet" href="{{ $water_css.RelPermalink }}" integrity="{{ $water_css.Data.Integrity }}" />
-{{ $base_css := resources.Get "static/css/base.css" | minify | fingerprint }}
+{{ $base_css := resources.Get "static/css/base.scss" | minify | resources.ToCSS }}
 <link type="text/css" rel="stylesheet" href="{{ $base_css.RelPermalink }}" integrity="{{ $base_css.Data.Integrity }}" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
