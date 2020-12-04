@@ -12,5 +12,5 @@ showpagemeta: false
 
 ### My space on the world wide web
 
-This is my personal website, updated occassionally with interests and stuff.
+This is my personal website, updated occasionally with interests and stuff.
 
