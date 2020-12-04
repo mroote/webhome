@@ -4,7 +4,7 @@ matrix:
   apsell:
     mode: en
   pipeline:
-  - pyspelling.filters.context_filter:
+  - pyspelling.filters.context:
       context_visible_first: true
       delimiters:
       - open: '(?s)^(?P<open> *-{3,})$'
