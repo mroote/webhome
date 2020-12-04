@@ -2,7 +2,7 @@ name: Check Spelling
 on:
   push:
   pull_request:
-  workflow-dispatch:
+  workflow_dispatch:
 jobs:
   spelling:
     runs-on: ubuntu-latest
