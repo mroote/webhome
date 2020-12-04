@@ -32,7 +32,11 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; }
+  width: 100%;
+  padding: 20px; }
+
+.content .homepage-logos a {
+  padding: 10px; }
 
 .content .homepage-menu {
   display: flex;

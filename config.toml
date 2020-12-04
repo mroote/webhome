@@ -17,6 +17,21 @@ sectionPagesMenu = "main"
     url = "/about/"
     weight = -100
 
+  [[menu.external]]
+    name = "github"
+    url = "https://github.com/mroote"
+    pre = "<i data-feather='github'></i>"
+
+  [[menu.external]]
+    name = "linkedin"
+    url = "https://linkedin.com/mroote"
+    pre = "<i data-feather='linkedin'></i>"
+
+  [[menu.external]]
+    name = "thingiverse"
+    url = "https://www.thingiverse.com/majormjr/designs"
+    pre = "<i data-feather='layers'></i>"
+
   [[menu.about]]
     name = "ET phone home"
     pre = "<i class='fa fa-heart'></i>"

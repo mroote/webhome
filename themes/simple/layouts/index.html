@@ -5,19 +5,22 @@
         {{ .Content }}
     </article>
     <div class="homepage-logos">
-        <i data-feather="github"></i>
-        <i data-feather="linkedin"></i>
+        {{ range .Site.Menus.external }}
+            <a href="{{ .URL }}" target="_blank">
+            {{ .Pre }}
+            </a>
+        {{ end }}
     </div>
     <div class="homepage-menu">
         <ul>
             {{ $currentPage := . }}
             {{ range .Site.Menus.main }}
-                <li>
-                    <a href="{{ .URL }}">
-                        {{ .Pre }}
-                        <span>{{ .Name }}</span>
-                    </a>
-                </li>
+            <li>
+                <a href="{{ .URL }}">
+                    {{ .Pre }}
+                    <span>{{ .Name }}</span>
+                </a>
+            </li>
             {{ end }}
         </ul>
     </div>
