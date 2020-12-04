@@ -1,6 +1,14 @@
 {{- define "main" -}}
 <main class="content">
-    <aside>
+    <h1 data-text="{{ .Title }}" > {{ .Title }}</h1>
+    <article>
+        {{ .Content }}
+    </article>
+    <div class="homepage-logos">
+        <i data-feather="github"></i>
+        <i data-feather="linkedin"></i>
+    </div>
+    <div class="homepage-menu">
         <ul>
             {{ $currentPage := . }}
             {{ range .Site.Menus.main }}
@@ -12,10 +20,6 @@
                 </li>
             {{ end }}
         </ul>
-    </aside>
-    <article>
-        <h1 data-text="{{ .Title }}" > {{ .Title }}</h1>
-        <p>{{ .Content }}</p>
-    </article>
+    </div>
 </main>
 {{ end }}

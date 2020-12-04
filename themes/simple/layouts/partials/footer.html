@@ -1,8 +1,12 @@
 <footer>
-{{ $tuxLogo := resources.Get "static/img/tux.png" | minify | fingerprint }}
-<img class="img-invert" src="{{ $tuxLogo.RelPermalink }}">
-{{ if .Site.Params.copyrighthtml }}
-    <div class="text-center">{{.Site.Params.copyrighthtml | safeHTML}}</div>
-{{ end }}
-<canvas class="background"></canvas>
+    {{ $tuxLogo := resources.Get "static/img/tux.png" | minify | fingerprint }}
+    <div class="footer-logo">
+    <img class="text-center img-invert" src="{{ $tuxLogo.RelPermalink }}">
+    </div>
+    {{ if .Site.Params.copyrighthtml }}
+    <div class="footer-text-center">
+        <h4>{{.Site.Params.copyrighthtml | safeHTML}}</h4>
+    </div>
+    {{ end }}
+    <canvas class="background"></canvas>
 </footer>

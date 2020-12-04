@@ -31,4 +31,4 @@ sectionPagesMenu = "main"
     weight = -100
 
 [params]
-  copyrighthtml = "Copyright © {{ .Now.Year }} Mitch Roote."
+  copyrighthtml = "© 2020 Mitch Roote"

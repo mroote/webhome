@@ -13,7 +13,9 @@ html, body {
 
 .content article {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: center; }
 
 .content h1 {
   display: flex;
@@ -25,6 +27,29 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.content .homepage-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+
+.content .homepage-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+
+.content .homepage-menu ul {
+  justify-content: center;
+  display: table;
+  align-items: center;
+  list-style: none;
+  padding-left: 0; }
+
+.content .homepage-menu li {
+  align-items: center;
+  justify-content: center; }
 
 @media (prefers-color-scheme: dark) {
   .img-invert {
@@ -140,7 +165,24 @@ html, body {
 footer {
   height: 30px;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 20px; }
+
+footer .footer-text-center {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; }
+
+footer .footer-logo {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 20px; }
 
 aside {
   padding: 24px; }
