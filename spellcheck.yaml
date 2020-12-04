@@ -12,5 +12,10 @@ matrix:
   - pyspelling.filters.markdown:
       markdown_extensions:
       - markdown.extensions.extra:
+  - pyspelling.filters.html:
+    comments: false
+    ignores:
+    - code
+    - pre
   sources:
   - 'content/**/*.md'
