@@ -5,21 +5,16 @@ matrix:
     mode: en
   dictionary:
     wordlists:
-    - wordlist.txt
+    - .wordlist.txt
     output: wordlist.dic
     encoding: utf-8
   pipeline:
+  - pyspelling.filters.context_filter:
+      context_visible_first: true
+      - open: (?s)^---$
+        close: (?s)^---$
   - pyspelling.filters.markdown:
       markdown_extensions:
       - markdown.extensions.extra:
-  - pyspelling.filters.html:
-      comments: true
-      attributes:
-      - title
-      - alt
-      ignores:
-      - ':matches(code, pre)'
-      - 'code'
-      - 'pre'
   sources:
   - 'content/**/*.md'
