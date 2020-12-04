@@ -24,7 +24,7 @@ sectionPagesMenu = "main"
 
   [[menu.external]]
     name = "linkedin"
-    url = "https://linkedin.com/mroote"
+    url = "https://www.linkedin.com/in/mitchroote/"
     pre = "<i data-feather='linkedin'></i>"
 
   [[menu.external]]
