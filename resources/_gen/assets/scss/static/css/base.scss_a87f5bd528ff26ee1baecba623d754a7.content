@@ -17,6 +17,19 @@ html, body {
   width: 100%;
   justify-content: center; }
 
+.content article {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: center; }
+
+.content article img {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: center;
+  border-radius: 50%; }
+
 .content h1 {
   display: flex;
   width: 100%;
@@ -24,6 +37,7 @@ html, body {
   align-items: center; }
 
 .content h2 {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center; }
