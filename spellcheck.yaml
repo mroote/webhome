@@ -6,7 +6,7 @@ matrix:
   dictionary:
     encoding: utf-8
     wordlists:
-    - .wordlists.txt
+    - .wordlist.txt
   pipeline:
   - pyspelling.filters.context:
       context_visible_first: true
