@@ -1,6 +1,18 @@
 {{- define "main" -}}
 <main class="content">
-    <!-- sidebar start -->
+    <article>
+        <ul>
+        {{ range .Pages }}
+            <li>
+                <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{ .Title }}</a>
+            </li>
+        {{ end }}
+        </ul>
+        <h1> {{.Title}} </h1>
+        <div class="about-content">
+            {{.Content}}
+        </div>
+    </article>
     <aside>
         <ul>
         {{ $currentPage := . }}
@@ -14,18 +26,5 @@
         {{ end }}
         </ul>
     </aside>
-    <article>
-        <header>
-            <h1> {{.Title}} </h1>
-        </header>
-        {{.Content}}
-        <ul>
-        {{ range .Pages }}
-            <li>
-                <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{ .Title }}</a>
-            </li>
-        {{ end }}
-        </ul>
-    </article>
 </main>
 {{ end }}

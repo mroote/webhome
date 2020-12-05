@@ -33,17 +33,10 @@ sectionPagesMenu = "main"
     pre = "<i data-feather='layers'></i>"
 
   [[menu.about]]
-    name = "ET phone home"
+    name = "Projects"
     pre = "<i class='fa fa-heart'></i>"
-    url = "/about/"
-    weight = -110
-
-  [[menu.about]]
-    name = "about1"
-    post = "<span class='alert'>New!</span>"
-    pre = "<i class='fa fa-road'></i>"
-    url = "/about/"
-    weight = -100
+    url = "/about/projects"
+    weight = 10
 
 [params]
   copyrighthtml = "© 2020 Mitch Roote"
