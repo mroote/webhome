@@ -35,7 +35,7 @@ sectionPagesMenu = "main"
     weight = 10
   [[menu.about]]
     name = "Projects"
-    url = "/about/projects"
+    url = "/about/projects/"
     weight = 10
 
 [params]
