@@ -10,7 +10,6 @@ sectionPagesMenu = "main"
     name = "Home"
     url = "/"
     weight = -110
-
   [[menu.main]]
     identifier = "about"
     name = "About"
@@ -21,20 +20,21 @@ sectionPagesMenu = "main"
     name = "github"
     url = "https://github.com/mroote"
     pre = "<i data-feather='github'></i>"
-
   [[menu.external]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/mitchroote/"
     pre = "<i data-feather='linkedin'></i>"
-
   [[menu.external]]
     name = "thingiverse"
     url = "https://www.thingiverse.com/majormjr/designs"
     pre = "<i data-feather='layers'></i>"
 
   [[menu.about]]
+    name = "About"
+    url = "/about/"
+    weight = 10
+  [[menu.about]]
     name = "Projects"
-    pre = "<i class='fa fa-heart'></i>"
     url = "/about/projects"
     weight = 10
 
