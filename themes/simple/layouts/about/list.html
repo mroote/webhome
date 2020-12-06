@@ -7,7 +7,7 @@
         </section>
     </article>
     <aside>
-        <ul>
+        <ul id="about-main-menu">
         {{ $currentPage := . }}
         {{ range .Site.Menus.about }}
             <li>
@@ -18,7 +18,7 @@
             </li>
         {{ end }}
         </ul>
-        <ul>
+        <ul id="about-page-list">
         {{ range .Pages }}
             <li>
                 <a href="{{.Permalink}}">{{ .Title }}</a>

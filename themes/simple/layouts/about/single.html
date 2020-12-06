@@ -7,9 +7,21 @@
     <article>
         {{ .Content }}
     </article>
-    <nav>
+    <nav class="about-footer-nav">
         <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
         <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
+        <br>
+        <ul>
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.about }}
+            <li>
+                <a href="{{ .URL }}">
+                    {{ .Pre }}
+                    <span>{{ .Name }}</span>
+                </a>
+            </li>
+        {{ end }}
+        </ul>
     </nav>
 </main>
 {{ end }}

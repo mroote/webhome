@@ -84,6 +84,46 @@ html, body {
     justify-content: center;
 }
 
+.content nav.about-footer-nav a {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.content nav.about-footer-nav ul {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.content nav.about-footer-nav li {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.content #about-main-menu {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.content #about-main-menu li {
+    display: flex;
+    width: 100%;
+}
+
+.content #about-page-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.content #about-page-list li {
+    display: flex;
+    width: 100%;
+}
+
 @media (prefers-color-scheme: dark) {
 .img-invert {
     filter: invert(1);
