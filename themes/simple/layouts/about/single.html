@@ -8,8 +8,10 @@
         {{ .Content }}
     </article>
     <nav class="about-footer-nav">
-        <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
-        <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
+        <div class="about-footer-pages">
+            <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
+            <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
+        </div>
         <br>
         <ul id="about-page-menu">
         {{ $currentPage := . }}

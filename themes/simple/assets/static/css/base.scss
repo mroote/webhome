@@ -137,6 +137,14 @@ html, body {
     width: 100%;
 }
 
+.content div.about-footer-pages {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .content aside .about-menu {
     display: flex;
     flex-direction: row;
