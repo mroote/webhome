@@ -32,9 +32,17 @@ sectionPagesMenu = "main"
     url = "/about/"
     weight = 10
   [[menu.about]]
+    name = "Portfolio"
+    url = "/about/portfolio/"
+    weight = 20
+  [[menu.about]]
     name = "Projects"
     url = "/about/projects/"
-    weight = 10
+    weight = 20
+  [[menu.about]]
+    name = "Tutorials"
+    url = "/about/tutorials/"
+    weight = 30
 
 [params]
   copyrighthtml = "© 2020 Mitch Roote"

@@ -85,8 +85,8 @@ html, body {
 }
 
 .content nav.about-footer-nav a {
-    padding-left: 25px;
-    padding-right: 25px;
+    display: flex;
+    flex-direction: row;
 }
 
 .content nav.about-footer-nav ul {
@@ -94,6 +94,8 @@ html, body {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
+    list-style: none;
+    padding-left: 0;
 }
 
 .content nav.about-footer-nav li {
@@ -104,24 +106,36 @@ html, body {
     width: 100%;
 }
 
+.content aside .about-menu {
+    display: flex;
+    flex-direction: row;
+}
+
 .content #about-main-menu {
     display: flex;
     flex-flow: row wrap;
+    list-style: none;
+    padding-left: 0;
 }
 
 .content #about-main-menu li {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 .content #about-page-list {
     display: flex;
     flex-flow: row wrap;
+    list-style: none;
+    padding-left: 0;
+    width: 50%;
 }
 
 .content #about-page-list li {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 @media (prefers-color-scheme: dark) {
