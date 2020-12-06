@@ -1,12 +1,14 @@
 {{- define "main" -}}
 <main class="content">
     <article>
-        <h1> {{.Title}} </h1>
+        <header>
+            <h1>{{.Title}}</h1>
+        </header>
         <section class="about-content">
             {{.Content}}
         </section>
     </article>
-    <aside class="about-menu">
+    <nav class="about-footer-nav">
         <ul id="about-main-menu">
         {{ $currentPage := . }}
         {{ range .Site.Menus.about }}

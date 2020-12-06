@@ -27,28 +27,37 @@ html, body {
     justify-content: center;
 }
 
-.content article img {
+.content article {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
     justify-content: center;
-    border-radius: 50%;
+}
+
+.content article p {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    justify-content: left;
 }
 
 .content aside {
     display: flex;
 }
 
-.content h1 {
+.content header {
     display: flex;
+    flex-flow: row wrap;
     width: 100%;
-    justify-content: center;
-    align-items: center;
 }
 
-.content h2 {
-    width: 100%;
+.content header h1,
+.content header h2,
+.content header h3,
+.content header h4,
+.content header h5 {
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
 }
@@ -84,9 +93,31 @@ html, body {
     justify-content: center;
 }
 
+.content article#homepage p {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.content article#homepage img {
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.content nav.about-footer-nav {
+    padding-top: 64px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 .content nav.about-footer-nav a {
     display: flex;
     flex-direction: row;
+    padding: 5px;
 }
 
 .content nav.about-footer-nav ul {
@@ -116,6 +147,7 @@ html, body {
     flex-flow: row wrap;
     list-style: none;
     padding-left: 0;
+    width: 50%;
 }
 
 .content #about-main-menu li {

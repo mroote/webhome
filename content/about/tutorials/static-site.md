@@ -1,5 +1,5 @@
 ---
-title: "Static Site"
+title: "Hosting a highly available inexpensive static site"
 date: 2020-12-04T19:19:41-05:00
 draft: false 
 ---
