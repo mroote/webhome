@@ -1,8 +1,15 @@
 {{- define "main" -}}
 <main class="content">
+    <header>
+        <h1><a href="{{ .RelPermalink }}">{{ .Title }}</h1></a>
+        <h5>Published: {{ .PublishDate | dateFormat "Monday, Jan, 2, 2006" }}</h5>
+    </header>
     <article>
-        <h1>{{ .Title }}</h1>
         {{ .Content }}
     </article>
+    <nav>
+        <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
+        <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
+    </nav>
 </main>
 {{ end }}
