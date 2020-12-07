@@ -11,3 +11,5 @@ hugo
 github
 yml
 yaml
+Paginator
+html
