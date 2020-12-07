@@ -6,7 +6,7 @@ draft: false
 
 ### 3D Printing is a powerful tool for building many kinds of projects
 
-It has become an indispensible tool for designing and creating objects in the real world.  Using 3D printing along with CAD software allows the creation of complex objects or tools. The ability to design a part in the computer and have a printer create it in hours is something that I really enjoy and use extensively.
+It has become an indispensable tool for designing and creating objects in the real world.  Using 3D printing along with CAD software allows the creation of complex objects or tools. The ability to design a part in the computer and have a printer create it in hours is something that I really enjoy and use extensively.
 
 Not only is 3D printing a powerful tool for creation it has created large communities online of people sharing their creations and experiences.
 
