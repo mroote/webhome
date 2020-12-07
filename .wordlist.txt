@@ -3,7 +3,11 @@ uptime
 factorio
 ender
 freecad
+FreeCAD
 onshape
+OnShape
 roote
 hugo
 github
+yml
+yaml

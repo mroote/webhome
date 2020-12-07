@@ -13,7 +13,7 @@ matrix:
       delimiters:
       - open: '(?s)^(?P<open> *-{3,})$' # Ignore Hugo frontmatter on top of pages
         close: '^(?P=open)$'
-      - open: '(?s)^(?P<open> *`{3,}) *$' # Ignore triple backtick code block
+      - open: '(?s)^(?P<open> *`{3,}) .*$' # Ignore triple backtick code block
         close: '^(?P=open)$'
   - pyspelling.filters.markdown:
       markdown_extensions:
