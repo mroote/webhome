@@ -18,9 +18,9 @@ After creating an account on B2 cloud create a new bucket and enable public acce
 
 #### Creating the Hugo website
 
-Hugo is a powerful static site generation tool with a large community and many free themes available. It has a powerful templating engine and content management tools.
+Hugo is a powerful static site generation tool with a large community and many free themes available. It has a powerful template engine and content management tools.
 
-I created this websites current theme from scratch using Hugo templating and found it very enjoyable once I got more familiar with Hugo templating precendence.
+I created this websites current theme from scratch using Hugo templates and found it very enjoyable once I got more familiar with Hugo template order precedence.
 
 Once the Hugo static website is ready you can build the static files with the `hugo` command.
 
