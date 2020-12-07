@@ -10,7 +10,7 @@ title: "About"
 showpagemeta: false
 ---
 
-### My space on the world wide web
+## My space on the world wide web
 
-This is my personal website, updated occasionally with interests and stuff.
+Hello, I'm Mitch Roote.  This is my personal website, updated occasionally with interests and stuff.
 
