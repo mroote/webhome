@@ -1046,9 +1046,10 @@ code {
   background: var(--background);
   color: #000;
   color: var(--code);
-  padding: 2.5px 5px;
+  padding: 4px 5px;
   border-radius: 6px;
   font-size: 1em;
+  margin: 0px 3px 0px 3px;
 }
 
 @media (prefers-color-scheme: dark) {

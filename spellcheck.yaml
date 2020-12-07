@@ -8,7 +8,7 @@ matrix:
     wordlists:
     - .wordlist.txt
   pipeline:
-  - pyspelling.filters.context:
+  - pyspelling.filters.context: # Ignore Hugo frontmatter on top of pages
       context_visible_first: true
       delimiters:
       - open: '(?s)^(?P<open> *-{3,})$'
