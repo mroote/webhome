@@ -1,29 +1,14 @@
 {{- define "main" -}}
 <main class="content">
-    <header>
-        <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
-        <h5>{{ .PublishDate | dateFormat "Monday, Jan, 2, 2006" }}</h5>
-    </header>
-    <article>
-        {{ .Content }}
+    <article class="about-content">
+        <header>
+            <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+            <h5>{{ .PublishDate | dateFormat "Monday, Jan, 2, 2006" }}</h5>
+        </header>
+        <section class="about-content">
+            {{ .Content }}
+        </section>
     </article>
-    <nav class="about-footer-nav">
-        <div class="about-footer-pages">
-            <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
-            <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
-        </div>
-        <br>
-        <ul id="about-page-menu">
-        {{ $currentPage := . }}
-        {{ range .Site.Menus.about }}
-            <li>
-                <a href="{{ .URL }}">
-                    {{ .Pre }}
-                    <span>{{ .Name }}</span>
-                </a>
-            </li>
-        {{ end }}
-        </ul>
-    </nav>
+    {{- partial "about-nav.html" . -}}
 </main>
 {{ end }}

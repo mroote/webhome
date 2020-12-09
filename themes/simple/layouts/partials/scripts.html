@@ -4,10 +4,15 @@
 <script src="{{ $ztext.RelPermalink }}" integrity="{{ $ztext.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script type="text/javascript">
+    const themeToggle = document.getElementById('theme-toggle');
+
     window.onload = function() {
         Particles.init({
           selector: '.background'
         });
       };
+
     feather.replace()
+    updateToggle()
+    themeToggle.addEventListener('change', updateTheme);
 </script>

@@ -8,9 +8,9 @@ draft: false
 
 #### Inexpensive hosting with high uptime and bandwidth capabilities
 
-This website is built using Hugo, a static website building tool written in Go.  I've created a theme template and using Hugo I can easily generate a complete website. The generated website is then uploaded to B2 cloud and access to the bucket is through Cloudflare.
+This website is built using Hugo, a static website building tool written in Go.  I've created a theme template and using Hugo I can easily generate a complete website. The generated website is then uploaded to a public B2 cloud bucket. Access to the website hosted in the B2 bucket is then provided through Cloudflare.
 
-Taking advantage of the bandwidth alliance between B2 and Cloudflare this gives free bandwidth and inexpensive storage of your data.  Currently B2 cloud charges $5 for 1TB of data.
+Taking advantage of the bandwidth alliance between B2 and Cloudflare gives free bandwidth and inexpensive storage of your data.  Currently B2 cloud charges $5 per month for 1TB of data. 
 
 #### Creating the website bucket
 
@@ -20,7 +20,7 @@ After creating an account on B2 cloud create a new bucket and enable public acce
 
 Hugo is a powerful static site generation tool with a large community and many free themes available. It has a powerful template engine and content management tools.
 
-I created this websites current theme from scratch using Hugo templates and found it very enjoyable once I got more familiar with Hugo template order precedence.
+I created this websites current theme using Hugo templates and found it very enjoyable once I got more familiar with Hugo template order precedence.
 
 Once the Hugo static website is ready you can build the static files with the `hugo` command.
 
@@ -105,18 +105,18 @@ I've made some modifications to allow serving the index.html page without specif
 
 ``` javascript
 'use strict';
-const b2Domains = ['']; // Array containing the URL's pointing to the website
-const b2Bucket = ''; // Name of the bucket in B2
+const b2Domains = ['dev.roote.ca', 'www.roote.ca', 'roote.ca'];
+const b2Bucket = 'r00t-homepage';
 const b2UrlPath = `/file/${b2Bucket}/`;
 
 addEventListener('fetch', event => {
-	return event.respondWith(fileReq(event));
+	return event.respondWith(handleRequest(event));
 });
 
 // define the file extensions we wish to add basic access control headers to
 const corsFileTypes = ['png', 'jpg', 'gif', 'jpeg', 'webp'];
 
-// Remove Backblaze debug headers
+// backblaze returns some additional headers that are useful for debugging, but unnecessary in production. We can remove these to save some size
 const removeHeaders = [
 	'x-bz-content-sha1',
 	'x-bz-file-id',
@@ -127,8 +127,7 @@ const removeHeaders = [
 ];
 const expiration = 31536000; // override browser cache for images - 1 year
 
-// define a function we can re-use to fix headers
-const fixHeaders = function(url, status, headers){
+function fixHeaders(url, status, headers){
 	let newHdrs = new Headers(headers);
 	// add basic cors headers for images
 	if(corsFileTypes.includes(url.pathname.split('.').pop())){
@@ -142,9 +141,7 @@ const fixHeaders = function(url, status, headers){
 		newHdrs.set('Cache-Control', 'public, max-age=300');
 	}
 	// set ETag for efficient caching where possible
-	const ETag = newHdrs.get('x-bz-content-sha1') || 
-                             newHdrs.get('x-bz-info-src_last_modified_millis') || 
-                             newHdrs.get('x-bz-file-id');
+	const ETag = newHdrs.get('x-bz-content-sha1') || newHdrs.get('x-bz-info-src_last_modified_millis') || newHdrs.get('x-bz-file-id');
 	if(ETag){
 		newHdrs.set('ETag', ETag);
 	}
@@ -155,18 +152,47 @@ const fixHeaders = function(url, status, headers){
 	return newHdrs;
 };
 
-async function fileReq(event){
+function fixUrl(url) {
+    if(b2Domains.includes(url.host)) {
+        const path = url.pathname;
+        if (path.includes(b2UrlPath)) {
+            return;
+        }
+        if (path.includes('404.html')) {
+            url.pathname = b2UrlPath + url.pathname;
+            return;
+        }
+		if(path.endsWith('/')) {
+			url.pathname = b2UrlPath + url.pathname + 'index.html';
+		} else if(path.slice(-5).includes('.')) {
+			url.pathname = b2UrlPath + url.pathname;
+		} else {
+            url.pathname = b2UrlPath + url.pathname + '/' + 'index.html';
+        }
+	}
+}
+
+async function fetchAndStreamNotFoundPage(resp, base_domain) {
+  const { status, statusText } = resp;
+  const { readable, writable } = new TransformStream();
+
+  const response = await fetch(`${base_domain}/404.html`);
+  const resp_text = await response.text();
+  const { headers } = response;
+
+  return new Response(resp_text, {
+    status,
+    statusText,
+    headers
+  });
+}
+
+async function handleRequest(event){
 	const cache = caches.default; // Cloudflare edge caching
 	let url = new URL(event.request.url);
 
-	if(b2Domains.includes(url.host)) { // Add index.html to the request if missing and necessary
-		if(url.pathname.endsWith('/')) {
-			url.pathname = b2UrlPath + url.pathname + 'index.html';
-		} else {
-			url.pathname = b2UrlPath + url.pathname;
-		}
-	}
-	
+	fixUrl(url);
+
 	let response = await cache.match(url); // try to find match for this request in the edge cache
 	if(response){
 		// use cache found on Cloudflare edge. Set X-Worker-Cache header for helpful debug
@@ -174,21 +200,18 @@ async function fileReq(event){
 		newHdrs.set('X-Worker-Cache', "true");
 		return new Response(response.body, {
 			status: response.status,
-			statusText: response.statusText,
+	    	statusText: response.statusText,
 			headers: newHdrs
 		});
 	}
 
 	// no cache, fetch request, apply Cloudflare lossless compression
-	response = await fetch(url, {cf: {polish: "lossless"}});
-    if(response.status === 404) { // Serve 404 page if request to B2 404's
-        console.log(url.origin, )
-        const url_404 = url.origin + '/404.html'
-        console.log('URL:', url_404)
-        return Response.redirect(url_404);
+	response = await fetch(url);
+    let newHdrs = fixHeaders(url, response.status, response.headers);
+    if(response.status === 404) {
+		return fetchAndStreamNotFoundPage(response, url.origin);
     }
-
-	let newHdrs = fixHeaders(url, response.status, response.headers);
+	
 	response = new Response(response.body, {
 		status: response.status,
 		statusText: response.statusText,

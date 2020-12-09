@@ -1,7 +1,6 @@
 languageCode = "en-us"
 title = "Mitch Roote"
 theme = "simple"
-sectionPagesMenu = "main"
 
 [menu]
   [[menu.main]]
@@ -12,6 +11,16 @@ sectionPagesMenu = "main"
     identifier = "about"
     name = "About"
     url = "/about/"
+    weight = -100
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog/"
+    weight = -100
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
     weight = -100
 
   [[menu.external]]
@@ -45,4 +54,5 @@ sectionPagesMenu = "main"
     weight = 30
 
 [params]
+  siteDescription = "Homepage for Mitch Roote"
   copyrighthtml = "© 2020 Mitch Roote"

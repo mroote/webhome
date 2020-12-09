@@ -14,5 +14,11 @@
                 <a class="{{if ($currentPage.IsMenuCurrent "main" .)}}active{{end}}" href="{{ .URL }}">{{ .Name }}</a>
             {{ end }}
         </div>
+        <div class="topnav-theme-toggle">
+            <label class="theme-switch">
+                <input id='theme-toggle' name=theme type=checkbox>
+                <span class="slider-switch"></span>
+            </label>
+        </div>
     </div> 
 </header>

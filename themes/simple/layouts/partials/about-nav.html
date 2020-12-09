@@ -1,0 +1,26 @@
+<nav class="about-footer-nav">
+    <div class="about-footer-pages">
+        <a href={{with .Prev}}{{.Permalink}}{{end}}>{{with .Prev}}<< {{.RelPermalink}}{{end}}</a>
+        <a href={{with .Next}}{{.Permalink}}{{end}}>{{with .Next}}{{.RelPermalink}} >>{{end}}</a>
+    </div>
+    <ul id="about-page-menu">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.about }}
+        <li>
+            <a href="{{ .URL }}">
+                {{ .Pre }}
+                <span>{{ .Name }}</span>
+            </a>
+        </li>
+    {{ end }}
+    </ul>
+    {{ if .RegularPages }}
+    <ul id="about-page-list">
+    {{ range .RegularPages }}
+        <li>
+            <a href="{{.Permalink}}">{{ .Title }}</a>
+        </li>
+    {{ end }}
+    </ul>
+    {{ end }}
+</nav>

@@ -8,27 +8,6 @@
             {{.Content}}
         </section>
     </article>
-    <nav class="about-footer-nav">
-        <ul id="about-main-menu">
-        {{ $currentPage := . }}
-        {{ range .Site.Menus.about }}
-            <li>
-                <a href="{{ .URL }}">
-                    {{ .Pre }}
-                    <span>{{ .Name }}</span>
-                </a>
-            </li>
-        {{ end }}
-        </ul>
-        {{ if ne .Page.RelPermalink "/about/" }}
-        <ul id="about-page-list">
-        {{ range .Pages }}
-            <li>
-                <a href="{{.Permalink}}">{{ .Title }}</a>
-            </li>
-        {{ end }}
-        </ul>
-        {{ end }}
-    </aside>
+    {{- partial "about-nav.html" . -}}
 </main>
 {{ end }}

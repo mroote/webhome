@@ -1,13 +1,53 @@
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta 
+        name="description"
+        content="{{ .Site.Params.siteDescription }}"
+    />
+    <title>
+        Mitch Roote - {{ .Title }}
+    </title>
 
-{{ $water_css := resources.Get "static/css/water.css" | minify | fingerprint }}
-<link type="text/css" rel="stylesheet" href="{{ $water_css.RelPermalink }}" integrity="{{ $water_css.Data.Integrity }}" />
-{{ $base_css := resources.Get "static/css/base.scss" | resources.ToCSS | minify | fingerprint }}
-<link type="text/css" rel="stylesheet" href="{{ $base_css.RelPermalink }}" integrity="{{ $base_css.Data.Integrity }}" />
+    {{ $water_css := resources.Get "static/css/water.css" | minify | fingerprint }}
+    <link as="style" rel="preload" href="{{ $water_css.RelPermalink }}" integrity="{{ $water_css.Data.Integrity }}" />
+    {{ $water_dark_css := resources.Get "static/css/water.dark.css" | minify | fingerprint }}
+    <link as="style" rel="preload" href="{{ $water_dark_css.RelPermalink }}" integrity="{{ $water_dark_css.Data.Integrity }}" />
+    {{ $water_light_css := resources.Get "static/css/water.light.css" | minify | fingerprint }}
+    <link as="style" rel="preload" href="{{ $water_light_css.RelPermalink }}" integrity="{{ $water_light_css.Data.Integrity }}" />
+    <link rel="stylesheet" id="js-startup-stylesheet" href="{{ $water_css.RelPermalink }}"/>
+    <link rel="stylesheet" id="js-stylesheet" />
+    {{ $base_css := resources.Get "static/css/base.scss" | resources.ToCSS | minify | fingerprint }}
+    <link type="text/css" rel="stylesheet" href="{{ $base_css.RelPermalink }}" integrity="{{ $base_css.Data.Integrity }}" />
+    <script>
+        const light_css = '{{ $water_light_css.RelPermalink }}';
+        const dark_css = '{{ $water_dark_css.RelPermalink }}';
+        const stylesheet = document.getElementById('js-stylesheet');
+        const userSchemeDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+        const initialStyle = userSchemeDark ? dark_css : light_css;
 
-<title>
-    Mitch Roote - {{ .Title }}
-</title>
+        stylesheet.href = initialStyle;
+
+        const getThemeInput = () => {
+            return document.getElementById('theme-toggle')
+        }
+
+        const updateToggle = () => {
+            const theme_checked = getThemeInput()
+            if(!userSchemeDark) {
+                theme_checked.checked = true;
+            } else{
+                theme_checked.checked = false;
+            }
+        }
+
+        const updateTheme = () => {
+            const theme_checked = getThemeInput().checked;
+            if(theme_checked) {
+                stylesheet.href = light_css;
+            } else {
+                stylesheet.href = dark_css;
+            }
+        }
+    </script>
 </head>
