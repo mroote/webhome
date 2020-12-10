@@ -33,3 +33,14 @@ Extruder
 aluminium
 Ikea
 zipties
+CNAME
+Restic
+systemd
+CLI
+backend
+deduplication
+config
+restic
+systemctl
+conf
+repo
