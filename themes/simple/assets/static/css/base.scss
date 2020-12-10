@@ -5,13 +5,23 @@ html, body {
 
 .about-content h1,
 .about-content h2,
-.about-content h3,
-.about-content h4,
-.about-content h5 {
+.about-content h3 {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
+}
+
+.about-content h4,
+.about-content h5 {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    align-items: left;
+}
+
+.about-content code {
+    width: 100%;
 }
 
 section.about-image-gallery {
@@ -44,18 +54,18 @@ article#homepage p {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
+    max-width: 800px;
     justify-content: center;
 }
 
 .content article p {
-    display: flex;
+    display: inline;
     flex-flow: row wrap;
     justify-content: left;
 }
 
 section.about-content {
-    display: flex;
-    flex-flow: row wrap;
+    max-width: 800px;
 }
 
 .content aside {
@@ -196,7 +206,7 @@ section.about-content {
     justify-content: center;
 }
 
-.about-image-gallery p {
+.content section.about-image-gallery p {
     width: 45%;
     display: flex;
     padding: 12px;

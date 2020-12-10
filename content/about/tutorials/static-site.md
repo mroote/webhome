@@ -4,13 +4,13 @@ date: 2020-12-04T19:19:41-05:00
 draft: false 
 ---
 
-### Deploying a static website with Hugo, B2 cloud and Cloudflare
+### Deploying a static website with Hugo, B2 Cloud and Cloudflare
 
 #### Inexpensive hosting with high uptime and bandwidth capabilities
 
 This website is built using Hugo, a static website building tool written in Go.  I've created a theme template and using Hugo I can easily generate a complete website. The generated website is then uploaded to a public B2 cloud bucket. Access to the website hosted in the B2 bucket is then provided through Cloudflare.
 
-Taking advantage of the bandwidth alliance between B2 and Cloudflare gives free bandwidth and inexpensive storage of your data.  Currently B2 cloud charges $5 per month for 1TB of data. 
+Taking advantage of the bandwidth alliance between B2 and Cloudflare gives free outbound bandwidth from B2 and inexpensive storage of your data.  Currently B2 cloud charges $5 per month for 1TB of data and up to 10GB for free. Cloudflare workers are free up to 100,000 daily requests then it's $5 per month for a few million requests and an additional 50 cents per million requests. This means the website can serve millions of requests per month for less than $10.
 
 #### Creating the website bucket
 
@@ -22,9 +22,9 @@ Hugo is a powerful static site generation tool with a large community and many f
 
 I created this websites current theme using Hugo templates and found it very enjoyable once I got more familiar with Hugo template order precedence.
 
-Once the Hugo static website is ready you can build the static files with the `hugo` command.
+Once the Hugo static website is ready you can build the static files with the `hugo` command. This generates the HTML files from the templates and content into a public directory.
 
-```
+``` bash
 ❯ hugo
 Start building sites … 
 
@@ -99,14 +99,18 @@ jobs:
 
 By default B2 cloud serves files from a URL that includes some unnecessary routes. In order to match the routes created in the website we can use Cloudflare Workers to handle the inbound requests. This also gives the ability to modify the request to remove some B2 debugging headers and do some error handling such as serving the 404.html page.
 
+You will need to configure a domain in Cloudflare for the website. Then create a new worker and routes to send requests to the domain to the worker. Configure the domain with a CNAME record pointing to the domain of the B2 bucket.
+
+![Cloudflare DNS setting](cloudflare_static.png)
+
 I've based the worker code off of this great example found [here.](https://jross.me/free-personal-image-hosting-with-backblaze-b2-and-cloudflare-workers/) Using this code with some small modifications allows you to use B2 as the web server with full caching in the Cloudflare network.
 
 I've made some modifications to allow serving the index.html page without specifying it directly as one limitation of B2 cloud is that there isn't a concept of an index page for HTTP requests. I've also added some checks to see if the request to B2 gives a 404 error, if so it will return the 404 page included with the website. This prevents a user from seeing the 404 page directly from the B2 cloud bucket.
 
 ``` javascript
 'use strict';
-const b2Domains = ['dev.roote.ca', 'www.roote.ca', 'roote.ca'];
-const b2Bucket = 'r00t-homepage';
+const b2Domains = [''];
+const b2Bucket = '';
 const b2UrlPath = `/file/${b2Bucket}/`;
 
 addEventListener('fetch', event => {
@@ -177,10 +181,11 @@ async function fetchAndStreamNotFoundPage(resp, base_domain) {
   const { readable, writable } = new TransformStream();
 
   const response = await fetch(`${base_domain}/404.html`);
-  const resp_text = await response.text();
   const { headers } = response;
 
-  return new Response(resp_text, {
+  response.body.pipeTo(writable)
+
+  return new Response(readable, {
     status,
     statusText,
     headers
@@ -222,3 +227,7 @@ async function handleRequest(event){
 	return response;
 }
 ```
+
+Once these pieces are in place you should have a static website hosted in a highly available environment. Changes to the website are automatically pushed when they are committed to the source repository. This allows quick changes and updates without needing to do any changes in configuration, website changes are pushed quickly and checked for spelling mistakes.
+
+I hope this tutorial has been helpful in creating a static website. Feel free to reach out if you have any questions about this tutorial.
