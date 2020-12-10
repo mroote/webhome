@@ -32,3 +32,4 @@ Bowden
 Extruder
 aluminium
 Ikea
+zipties
