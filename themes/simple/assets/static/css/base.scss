@@ -19,14 +19,6 @@ section.about-image-gallery {
     flex-flow: row wrap;
 }
 
-.about-image-gallery p {
-    width: 45%;
-    display: flex;
-    padding: 12px;
-    align-items: top ;
-    justify-content: center;
-}
-
 article#homepage p {
     align-items: center;
     justify-content: center;
@@ -58,18 +50,12 @@ article#homepage p {
 .content article p {
     display: flex;
     flex-flow: row wrap;
-    //width: 100%;
     justify-content: left;
 }
 
 section.about-content {
     display: flex;
     flex-flow: row wrap;
-}
-
-.about-content p {
-    padding: 12px;
-    width: 40%;
 }
 
 .content aside {
@@ -207,6 +193,14 @@ section.about-content {
 .content #about-page-list li {
     display: flex;
     width: 100%;
+    justify-content: center;
+}
+
+.about-image-gallery p {
+    width: 45%;
+    display: flex;
+    padding: 12px;
+    align-items: top;
     justify-content: center;
 }
 
