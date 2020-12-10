@@ -6,7 +6,7 @@
         content="{{ .Site.Params.siteDescription }}"
     />
     <title>
-        Mitch Roote - {{ .Title }}
+        {{ .Title }} - Mitch Roote
     </title>
 
     {{ $water_css := resources.Get "static/css/water.css" | minify | fingerprint }}

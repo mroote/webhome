@@ -10,6 +10,6 @@ My homepage where I post some of my work, thoughts and creations.
 
 ![My Face](/face.jpg)
 
-### Based in Ontario, Canada
+##### Based in Ontario, Canada
 
 

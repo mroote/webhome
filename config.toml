@@ -27,14 +27,17 @@ theme = "simple"
     name = "github"
     url = "https://github.com/mroote"
     pre = "<i data-feather='github'></i>"
+    weight = 100
   [[menu.external]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/mitchroote/"
     pre = "<i data-feather='linkedin'></i>"
+    weight = 110
   [[menu.external]]
-    name = "thingiverse"
-    url = "https://www.thingiverse.com/majormjr/designs"
+    name = "cults3d"
+    url = "https://cults3d.com/en/users/rootech3d"
     pre = "<i data-feather='layers'></i>"
+    weight = 120
 
   [[menu.about]]
     name = "About"
