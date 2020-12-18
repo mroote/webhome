@@ -101,6 +101,12 @@ section.about-content {
     padding: 10px;
 }
 
+.content .homepage-logos a:hover {
+    text-decoration: underline;
+    text-decoration-color: #fa09be;
+    color: #fa09be;
+}
+
 .content .homepage-menu {
     display: flex;
     justify-content: center;
