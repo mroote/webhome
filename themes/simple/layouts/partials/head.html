@@ -15,11 +15,11 @@
     <link as="style" rel="preload" href="{{ $water_dark_css.RelPermalink }}" integrity="{{ $water_dark_css.Data.Integrity }}" />
     {{ $water_light_css := resources.Get "static/css/water.light.css" | minify | fingerprint }}
     <link as="style" rel="preload" href="{{ $water_light_css.RelPermalink }}" integrity="{{ $water_light_css.Data.Integrity }}" />
-    <link rel="stylesheet" id="js-startup-stylesheet" href="{{ $water_css.RelPermalink }}"/>
+    <link rel="stylesheet" id="js-startup-stylesheet" href="{{ $water_light_css.RelPermalink }}"/>
     <link rel="stylesheet" id="js-stylesheet" />
     {{ $base_css := resources.Get "static/css/base.scss" | resources.ToCSS | minify | fingerprint }}
     <link type="text/css" rel="stylesheet" href="{{ $base_css.RelPermalink }}" integrity="{{ $base_css.Data.Integrity }}" />
-    <script>
+    <script type="text/javascript">
         const light_css = '{{ $water_light_css.RelPermalink }}';
         const dark_css = '{{ $water_dark_css.RelPermalink }}';
         const stylesheet = document.getElementById('js-stylesheet');

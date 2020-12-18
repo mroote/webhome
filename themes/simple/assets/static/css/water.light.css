@@ -542,6 +542,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  text-decoration-color: #d941e2;
 }
 
 code {

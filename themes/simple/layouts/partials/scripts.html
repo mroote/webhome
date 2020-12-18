@@ -1,7 +1,5 @@
 {{ $particles := resources.Get "static/js/particles.js" | minify | fingerprint }}
 <script src="{{ $particles.RelPermalink }}" integrity="{{ $particles.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
-{{ $ztext := resources.Get "static/js/ztext.js" | minify | fingerprint }}
-<script src="{{ $ztext.RelPermalink }}" integrity="{{ $ztext.Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script type="text/javascript">
     const themeToggle = document.getElementById('theme-toggle');
