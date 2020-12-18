@@ -44,3 +44,10 @@ restic
 systemctl
 conf
 repo
+Javascript
+Inkscape
+Krita
+Ardour
+extruder
+Etsy
+Tindie

@@ -3,6 +3,7 @@ matrix:
   expect_match: false
   apsell:
     mode: en
+    d: en_GB
   dictionary:
     encoding: utf-8
     wordlists:
