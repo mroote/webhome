@@ -31,6 +31,8 @@ RESTIC_PASSWORD=""
 RESTIC_CACHE_DIR=/tmp/restic_cache
 ```
 
+Configure the include and exclude files to specify which files to backup.
+
 ``` bash
 ❯ sudo cat /etc/restic.includes
 /home/mitch
@@ -58,12 +60,13 @@ The `restic-backup.service` unit handles creating the backup snapshots.
 ❯ cat /etc/systemd/system/restic-backup.service
 [Unit]
 Description=Restic system backup
-Conflicts=restic-prune.service restic-check.service
+Before=restic-prune.service
+Wants=restic-prune.service
 JoinsNamespaceOf=restic-prune.service restic-check.service
 
 [Service]
 Type=oneshot
-ExecStart=restic backup --verbose --tag auto-backup --iexclude-file $EXCLUDE_PATHS --files-from $BACKUP_PATHS 
+ExecStart=restic backup --verbose --tag auto-backup --iexclude-file $EXCLUDE_PATHS --files-from $BACKUP_PATHS ; /usr/bin/sleep 20
 EnvironmentFile=/etc/restic-backup.conf
 SuccessExitStatus=3
 ```
@@ -92,8 +95,8 @@ The `restic-prune.service` unit runs the prune command on the repo, using the re
 ❯ cat /etc/systemd/system/restic-prune.service
 [Unit]
 Description=Restic prune to clean up old backups
+Requires=restic-backup.service
 After=restic-backup.service
-Conflicts=restic-backup.service restic-check.service
 JoinsNamespaceOf=restic-backup.service restic-check.service
 
 [Service]
@@ -102,27 +105,13 @@ ExecStart=restic forget --prune -o b2.connections=10 --compact --tag auto-backup
 EnvironmentFile=/etc/restic-backup.conf
 ```
 
-``` bash
-❯ cat /etc/systemd/system/restic-prune.timer
-[Unit]
-Description=Prune restic backups daily
-
-[Timer]
-OnCalendar=daily
-RandomizedDelaySec=6hours
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-
 #### restic-check
+##### Checking backup archive integrity
 
-The `restic-check.service` unit runs the consistency check on the repo to ensure data integrity.
+The `restic-check.service` unit runs the consistency check on the repo to ensure data integrity. It's configured to use the local cache in order to reduce the download API calls to B2 cloud to lower costs.
 
 ``` bash
 ❯ cat /etc/systemd/system/restic-check.service
-[Unit]
 Description=Restic system backup repository consitency check
 Conflicts=restic-backup.service restic-prune.service
 JoinsNamespaceOf=restic-backup.service restic-prune.service
@@ -130,7 +119,7 @@ After=restic-prune.service
 
 [Service]
 Type=oneshot
-ExecStart=restic check
+ExecStart=restic --verbose=3 check --with-cache
 EnvironmentFile=/etc/restic-backup.conf
 ```
 
@@ -156,8 +145,8 @@ After configuring the unit files the systemctl configuration will need to be rel
 
 ``` bash
 systemctl daemon-reload
-systemctl enable restic-backup.timer restic-prune.timer restic-check.timer
-systemctl start restic-backup.timer restic-prune.timer restic-check.timer
+systemctl enable restic-backup.timer restic-check.timer
+systemctl start restic-backup.timer restic-check.timer
 ```
 
 The system should now create daily backups, prune any extra data daily, and check the repository consistency weekly.
