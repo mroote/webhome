@@ -156,23 +156,23 @@ function fixHeaders(url, status, headers){
 	return newHdrs;
 };
 
-function fixUrl(url) {
-    if(b2Domains.includes(url.host)) {
-        const path = url.pathname;
-        if (path.includes(b2UrlPath)) {
-            return;
-        }
-        if (path.includes('404.html')) {
-            url.pathname = b2UrlPath + url.pathname;
-            return;
-        }
-		if(path.endsWith('/')) {
-			url.pathname = b2UrlPath + url.pathname + 'index.html';
-		} else if(path.slice(-5).includes('.')) {
-			url.pathname = b2UrlPath + url.pathname;
-		} else {
-            url.pathname = b2UrlPath + url.pathname + '/' + 'index.html';
-        }
+async function fixUrl(url) {
+  if(b2Domains.includes(url.host)) {
+    const path = url.pathname;
+    if (path.includes(b2UrlPath)) {
+        return;
+    }
+    if (path.includes('404.html')) {
+        url.pathname = b2UrlPath + url.pathname;
+        return;
+    }
+    if(path.endsWith('/')) {
+      url.pathname = b2UrlPath + url.pathname + 'index.html';
+    } else if(path.slice(-5).includes('.')) {
+      url.pathname = b2UrlPath + url.pathname;
+    } else {
+      url.pathname = b2UrlPath + url.pathname + '/' + 'index.html';
+    }
 	}
 }
 
@@ -180,7 +180,7 @@ async function fetchAndStreamNotFoundPage(resp, base_domain) {
   const { status, statusText } = resp;
   const { readable, writable } = new TransformStream();
 
-  const response = await fetch(`${base_domain}/404.html`);
+  const response = await fetch(`${base_domain}${b2UrlPath}404.html`);
   const { headers } = response;
 
   response.body.pipeTo(writable)
@@ -196,16 +196,16 @@ async function handleRequest(event){
 	const cache = caches.default; // Cloudflare edge caching
 	let url = new URL(event.request.url);
 
-	fixUrl(url);
+	await fixUrl(url);
 
 	let response = await cache.match(url); // try to find match for this request in the edge cache
-	if(response){
+	if(response) {
 		// use cache found on Cloudflare edge. Set X-Worker-Cache header for helpful debug
 		let newHdrs = fixHeaders(url, response.status, response.headers);
 		newHdrs.set('X-Worker-Cache', "true");
 		return new Response(response.body, {
 			status: response.status,
-	    	statusText: response.statusText,
+      statusText: response.statusText,
 			headers: newHdrs
 		});
 	}
@@ -214,7 +214,8 @@ async function handleRequest(event){
 	response = await fetch(url);
     let newHdrs = fixHeaders(url, response.status, response.headers);
     if(response.status === 404) {
-		return fetchAndStreamNotFoundPage(response, url.origin);
+      response = await fetchAndStreamNotFoundPage(response, url.origin);
+      return response;
     }
 	
 	response = new Response(response.body, {
