@@ -1,1 +1,17 @@
-<p>These are not the droids you're looking for</p>
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "header.html" -}}
+        <main class="content">
+            <p>These are not the droids you're looking for...</p>
+            <p>
+                <script>
+                    document.write('<a href="' + document.referrer + '"> Back</a>');
+                </script>
+            </p>
+        </main>
+        {{- partial "footer.html" . -}}
+        {{- partial "scripts.html" . -}}
+    </body>
+</html>
