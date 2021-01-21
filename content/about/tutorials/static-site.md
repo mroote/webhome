@@ -103,6 +103,10 @@ You will need to configure a domain in Cloudflare for the website. Then create a
 
 ![Cloudflare DNS setting](cloudflare_static.png)
 
+In the site configuration page rules section ensure cache level is set to everything and automatic HTTPS rewrites are enabled.
+
+![Cloudflare Page Rules](cloudflare_page_rules.png)
+
 I've based the worker code off of this great example found [here.](https://jross.me/free-personal-image-hosting-with-backblaze-b2-and-cloudflare-workers/) Using this code with some small modifications allows you to use B2 as the web server with full caching in the Cloudflare network.
 
 I've made some modifications to allow serving the index.html page without specifying it directly as one limitation of B2 cloud is that there isn't a concept of an index page for HTTP requests. I've also added some checks to see if the request to B2 gives a 404 error, if so it will return the 404 page included with the website. This prevents a user from seeing the 404 page directly from the B2 cloud bucket.
