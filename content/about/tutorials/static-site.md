@@ -10,7 +10,7 @@ draft: false
 
 This website is built using Hugo, a static website building tool written in Go.  I've created a theme template and using Hugo I can easily generate a complete website. The generated website is then uploaded to a public B2 cloud bucket. Access to the website hosted in the B2 bucket is then provided through Cloudflare.
 
-Taking advantage of the bandwidth alliance between B2 and Cloudflare gives free outbound bandwidth from B2 and inexpensive storage of your data.  Currently B2 cloud charges $5 per month for 1TB of data and up to 10GB for free. Cloudflare workers are free up to 100,000 daily requests then it's $5 per month for a few million requests and an additional 50 cents per million requests. This means the website can serve millions of requests per month for less than $10.
+Taking advantage of the bandwidth alliance between B2 and Cloudflare gives free outbound bandwidth from B2 and inexpensive storage of your data.  Currently B2 cloud charges $5 per month for 1TB of data and up to 10GB for free. Cloudflare workers are free up to 100,000 daily requests then it's $5 per month for a few million requests and an additional 50 cents per million requests. This means the website can serve millions of requests per month for less than $10 per month.
 
 #### Creating the website bucket
 
