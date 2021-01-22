@@ -8,7 +8,7 @@ type: projects
 
 ### 3D Designs
 
-#### Some of my designs for 3D printing
+### Some of my designs for 3D printing
 
 ### [Nyan Cat Lithophane](https://cults3d.com/en/3d-model/art/nyan-cat-lithophane)
 

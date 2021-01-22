@@ -52,3 +52,7 @@ extruder
 Etsy
 Tindie
 favourite
+LEDs
+Lithophane
+Nyan
+RGB
