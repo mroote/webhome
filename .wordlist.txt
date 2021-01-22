@@ -54,5 +54,6 @@ Tindie
 favourite
 LEDs
 Lithophane
+lithophane
 Nyan
 RGB
