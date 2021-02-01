@@ -22,8 +22,8 @@ Some of the programming languages I've used:
 
 - Python
 - Javascript
-- Bash
 - Go
+- Bash
 
 #### 3D software
 
