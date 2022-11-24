@@ -4,13 +4,15 @@ date: 2020-12-07T10:02:48-05:00
 draft: false
 ---
 
-### Reliable Backups on a Linux System with Restic and systemd
+### Reliable Backups on a Linux System with Restic Backblaze B2 and systemd
 
 Backups are a critical part of ensuring your data stays safe. Losing data is not something anyone wants to experience and reliable backups are how to ensure this never happens.
 
 Backup infrastructure is critical but shouldn't require large amounts of time to maintain. A program to create backups should work quietly in the background while ensuring data integrity and safety.
 
 Restic is a great backup tool with powerful features like deduplication and encryption. It supports B2 cloud as a storage backend allowing offsite backups for an inexpensive price. Restic is a CLI tool and doesn't include any scheduled tasks to run to create backups regularly. This tutorial configures systemd to run daily backups, prune the backup repository and run data integrity checks periodically.
+
+Restic has many backends capable of storing backup data. Backblaze B2 is a good option due to low cost of storage and availability of the stored data.
 
 ### Creating the config file
 
