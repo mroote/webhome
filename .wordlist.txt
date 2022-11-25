@@ -38,6 +38,7 @@ Restic
 systemd
 CLI
 backend
+backends
 deduplication
 config
 restic
@@ -58,3 +59,4 @@ lithophane
 Nyan
 Rootech
 RGB
+Backblaze

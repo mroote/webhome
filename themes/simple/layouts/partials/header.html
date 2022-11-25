@@ -1,7 +1,7 @@
 <header class="header">
     <div class="topnav">
         <div class="topnav-main">
-            {{ $mr_logo := resources.Get "static/img/MR.png" | minify | fingerprint }}
+            {{ $mr_logo := resources.Get "static/img/MR.png" | fingerprint }}
             <a href="/">
                 <img src="{{ $mr_logo.RelPermalink }}">
             </a>
