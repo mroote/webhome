@@ -1,5 +1,5 @@
 <footer>
-    {{ $tuxLogo := resources.Get "static/img/tux.png" | minify | fingerprint }}
+    {{ $tuxLogo := resources.Get "static/img/tux.png" | fingerprint }}
     <div class="footer-logo">
     <img class="text-center img-invert" src="{{ $tuxLogo.RelPermalink }}">
     </div>
