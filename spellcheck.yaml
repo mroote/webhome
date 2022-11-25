@@ -20,9 +20,9 @@ matrix:
       markdown_extensions:
       - markdown.extensions.extra:
   - pyspelling.filters.html:
-    comments: false
-    ignores:
-    - code
-    - pre
+      comments: false
+      ignores:
+      - code
+      - pre
   sources:
   - 'content/**/*.md'
