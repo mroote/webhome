@@ -1,5 +1,5 @@
 ---
-title: "Creating Backups with Restic and B2 Cloud"
+title: "Creating Backups with Restic and Backblaze B2 Cloud"
 date: 2020-12-07T10:02:48-05:00
 draft: false
 ---
@@ -12,7 +12,7 @@ Backup infrastructure is critical but shouldn't require large amounts of time to
 
 Restic is a great backup tool with powerful features like deduplication and encryption. It supports B2 cloud as a storage backend allowing offsite backups for an inexpensive price. Restic is a CLI tool and doesn't include any scheduled tasks to run to create backups regularly. This tutorial configures systemd to run daily backups, prune the backup repository and run data integrity checks periodically.
 
-Restic has many backends capable of storing backup data. Backblaze B2 is a good option due to low cost of storage and availability of the stored data.
+Restic has many backends capable of storing backup data. [Backblaze B2](https://backblaze.com/b2) is a good option due to low cost of storage and availability of the stored data.
 
 ### Creating the config file
 
