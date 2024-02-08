@@ -1,0 +1,37 @@
+name: Spellcheck Hugo Static Site
+
+on:
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  check-spelling:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Check Spelling
+      uses: rojopolis/spellcheck-github-actions@0.28.0
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+        fetch-depth: 0
+    - name: Hugo setup
+      uses: peaceiris/actions-hugo@v2.4.13
+      with:
+        extended: true
+    - name: Hugo version
+      run: hugo env
+    - name: Build
+      run: hugo --minify
+    - uses: actions/upload-artifact@v2
+      with:
+        name: homepage-website
+        path: ./public
+          
+
