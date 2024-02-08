@@ -10,7 +10,7 @@ on:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
-    - name: get website artifact:
+    - name: get website artifact
       uses: actions/download-artifact@master
       with:
         name: homepage-website
