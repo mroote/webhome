@@ -1,36 +1,20 @@
-name: Build Hugo Static Site
+name: Build and deploy Hugo Static Site
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
-jobs:
-  check-spelling:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
-    - name: Check Spelling
-      uses: rojopolis/spellcheck-github-actions@0.28.0
-  deploy:
-    needs: [check-spelling]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+    - name: get website artifact:
+      uses: actions/download-artifact@master
       with:
-        submodules: true
-        fetch-depth: 0
-    - name: Hugo setup
-      uses: peaceiris/actions-hugo@v2.4.13
-      with:
-        extended: true
-    - name: Hugo version
-      run: hugo env
-    - name: Build
-      run: hugo --minify
+        name: homepage-website
+        path: ./public
     - name: Backblaze B2 Sync
       uses: earendildev/backblaze-b2-action@v0.2.0
       env:
