@@ -13,7 +13,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
     - name: get website artifact
-      uses: actions/download-artifact@master
+      uses: actions/download-artifact@4
       with:
         name: homepage-website
         path: ./public
