@@ -6,17 +6,21 @@ on:
   workflow_dispatch:
 
 jobs:
+  needs: 
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
-    - name: get website artifact
-      uses: actions/download-artifact@v4
+    - name: Hugo setup
+      uses: peaceiris/actions-hugo@v2.4.13
       with:
-        name: homepage-website
-        path: ./public
+        extended: true
+    - name: Hugo version
+      run: hugo env
+    - name: Build
+      run: hugo --minify
     - name: Backblaze B2 Sync
       uses: earendildev/backblaze-b2-action@v0.2.0
       env:

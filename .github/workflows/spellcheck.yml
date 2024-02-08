@@ -30,8 +30,4 @@ jobs:
       run: hugo env
     - name: Build
       run: hugo --minify
-    - uses: actions/upload-artifact@v4
-      with:
-        name: homepage-website
-        path: ./public
 
